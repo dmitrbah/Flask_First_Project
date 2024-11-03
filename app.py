@@ -1,4 +1,4 @@
-from idlelib.iomenu import encoding
+from itertools import count
 
 from flask import Flask
 import random
@@ -13,6 +13,7 @@ BOOK_FILE = os.path.join(BASE_DIR, 'war_and_peace.txt')
 cars_list = ['Chevrolet', 'Renault', 'Ford', 'Lada', 'Mazda']
 cats_list = ['Корниш-рекс', 'Русская голубая', 'Шотландская вислоухая', 'Мейн-кун', 'Манчкин']
 words_list = list()
+my_counter = 0
 
 @app.route('/hello_world')
 def hello_world():
@@ -55,6 +56,12 @@ def get_random_word():
     global words_list
     result = random.choice(words_list)
     return result
+
+@app.route('/counter')
+def counter():
+    global my_counter
+    my_counter += 1
+    return f'Страница открывалась {my_counter} раз'
 
 if __name__ == '__main__':
     gen_words_list(BOOK_FILE)
