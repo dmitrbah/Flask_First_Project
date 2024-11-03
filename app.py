@@ -28,5 +28,12 @@ def get_time_now():
     current_time = datetime.datetime.now()
     return f'Точное время {current_time}'
 
+@app.route('/get_time/future')
+def get_time_future():
+    current_time = datetime.datetime.now()
+    delta = datetime.timedelta(hours=1)
+    future_time = current_time + delta
+    return f'Точное время через час будет {future_time}'
+
 if __name__ == '__main__':
     app.run(debug=True)
