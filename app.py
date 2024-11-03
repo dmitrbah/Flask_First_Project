@@ -1,5 +1,6 @@
 from flask import Flask
 import random
+import datetime
 
 app = Flask('__name__')
 
@@ -21,6 +22,11 @@ def cats():
     global cats_list
     result = random.choice(cats_list)
     return result
+
+@app.route('/get_time/now')
+def get_time_now():
+    current_time = datetime.datetime.now()
+    return f'Точное время {current_time}'
 
 if __name__ == '__main__':
     app.run(debug=True)
